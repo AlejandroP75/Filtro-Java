@@ -26,6 +26,7 @@ CREATE TABLE factura (
     numeroFactura INT AUTO_INCREMENT PRIMARY KEY,
     fecha DATETIME NOT NULL,
     cliente_id INT,
+    iva_a_pagar FLOAT,
     FOREIGN KEY (cliente_id) REFERENCES cliente(id),
     INDEX idx_factura_cliente (cliente_id)
 );

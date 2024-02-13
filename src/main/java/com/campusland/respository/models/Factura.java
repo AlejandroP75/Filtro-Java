@@ -47,6 +47,14 @@ public class Factura {
         return totalFactura;
     }
 
+    public double getImpuestoFactura(){
+        double impuesto = 0.19;
+        double totalFactura = getTotalFactura();
+        double impuesto_pagar = totalFactura * impuesto;
+
+        return impuesto_pagar;
+    }
+
     public void agregarItem(ItemFactura item){
         this.items.add(item);
     }
@@ -58,12 +66,13 @@ public class Factura {
         System.out.println("Fecha: " + Formato.formatoFechaHora(this.getFecha()));
         System.out.println("-----------Detalle Factura----------------------");
         for (ItemFactura item : this.items) {
-            System.out.println(item.getProducto().getCodigoNombre() + " " + item.getCantidad() + " "
-                    + Formato.formatoMonedaPesos(item.getImporte()));
+            System.out.println(item.getProducto().getCodigoNombre() + " " + item.getCantidad() + " " + Formato.formatoMonedaPesos(item.getImporte()));
 
         }
         System.out.println();
-        System.out.println("Total                        " + Formato.formatoMonedaPesos(this.getTotalFactura()));
+        System.out.println("Total productos              " + Formato.formatoMonedaPesos(this.getTotalFactura()));
+        System.out.println("IVA                          " + Formato.formatoMonedaPesos(this.getImpuestoFactura()));
+        System.out.println("Total a pagar                " + Formato.formatoMonedaPesos(this.getTotalFactura() - this.getImpuestoFactura()));
         System.out.println();
     }
 
