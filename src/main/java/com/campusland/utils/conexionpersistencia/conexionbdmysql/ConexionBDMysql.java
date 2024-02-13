@@ -15,7 +15,7 @@ public class ConexionBDMysql {
 
     public static Connection getInstance() throws SQLException {
 
-        return connection = DriverManager.getConnection(url, username, password);
+        return connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_filtro_java?serverTimezone=UTC", "root", "campus2024");
 
     }
 
