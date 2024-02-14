@@ -9,7 +9,7 @@ import com.campusland.respository.models.Producto;
 
 public class ViewFactura extends ViewMain {
 
-    public static void startMenu() {
+    public static void startMenu() throws FacturaExceptionInsertDataBase {
 
         int op = 0;
 
@@ -23,22 +23,56 @@ public class ViewFactura extends ViewMain {
                 case 2:
                     listarFactura();
                     break;
+                case 3:
+                    generarDIAN();
+                    break;
+                case 4:
+                    informeTotal();
+                    break;
+                case 5:
+                    clientesCompras();
+                    break;
+                case 6:
+                    productoMasVendido();
+                    break;
                 default:
                     System.out.println("Opcion no valida");
                     break;
             }
 
-        } while (op >= 1 && op < 3);
+        } while (op >= 1 && op < 5);
 
+    }
+
+    public static void generarDIAN(){
+        System.out.println("Generación archivo DIAN");
+
+
+    }
+
+    public static void informeTotal(){
+        System.out.println("Generacion infrome total");
+    }
+
+    public static void clientesCompras(){
+        System.out.println("Listado descendente clientes por compras");
+    }
+
+    public static void productoMasVendido(){
+        System.out.println("Listado descendente producto mas vendido");
     }
 
     public static int mostrarMenu() {
         System.out.println("----Menu--Factura----");
         System.out.println("1. Crear factura.");
         System.out.println("2. Listar factura.");
-        System.out.println("3. Salir ");
+        System.out.println("3. Generar archivo DIAN por año");
+        System.out.println("4. Informe total de ventas, descuento e impuestos");
+        System.out.println("5. Listado descendiente clientes por compras");
+        System.out.println("6. Salir ");
         return leer.nextInt();
     }
+
 
     public static void listarFactura() {
         System.out.println("Lista de Facturas");

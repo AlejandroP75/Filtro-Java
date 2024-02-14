@@ -46,4 +46,12 @@ VALUES
 (9, 7, 3, 195.00),
 (10, 8, 1, 75.00);
 
+INSERT INTO descuento (tipo, condicion, monto_porcentaje, productos, estado)
+VALUES
+("Porcentaje", "Monto minimo de compra $1000", "10%", "Todos", "Activo"),
+("Monto fijo", "Compra de al menos 5 unidades por producto X", "$5", "Producto X", "Activo"),
+("Porcentaje", "Cliente Gold con mas de 10 compras previas", "15%", "Todos", "Activo"),
+("Monto fijo", "Valido solo los viernes", "$3", "Todos", "Activo"),
+("Porcentaje", "Compra durante la temporada navideña", "5%", "Todos", "Activo");
+
 

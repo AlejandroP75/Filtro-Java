@@ -2,6 +2,7 @@ package com.campusland.views;
 
 import java.util.Scanner;
 
+import com.campusland.exceptiones.facturaexceptions.FacturaExceptionInsertDataBase;
 import com.campusland.respository.impl.implcliente.RepositoryClientMysqlImpl;
 import com.campusland.respository.impl.implfactura.RepositoryFacturaJsonImpl;
 import com.campusland.respository.impl.implfactura.RepositoryFacturaMysqlImpl;
@@ -21,7 +22,7 @@ public class ViewMain {
     public static final ServiceFactura serviceFactura = new ServiceFacturaImpl(new RepositoryFacturaMysqlImpl(),new RepositoryFacturaJsonImpl());
     public static final Scanner leer = new Scanner(System.in);
 
-    public static void main(String[] args) {      
+    public static void main(String[] args) throws FacturaExceptionInsertDataBase {      
         int op = 0;
 
         do {

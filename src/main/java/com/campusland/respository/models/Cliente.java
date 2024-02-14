@@ -17,9 +17,6 @@ public class Cliente {
     private String celular;   
     private String documento;
 
-    
-
-
     public Cliente(String nombre, String apellido, String email, String direccion, String celular, String documento) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -41,10 +38,4 @@ public class Cliente {
         System.out.println("Celular: "+this.getCelular());
         System.out.println("Dirección: "+this.getDireccion());    
     }
-
-
-
-    
-
-    
 }
