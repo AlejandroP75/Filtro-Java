@@ -26,7 +26,6 @@
   } ],
   "totalFactura" : 110.0,
   "impuestoFactura" : 20.9,
-  "descuentos" : 0.0,
   "descuento2" : 0.0
 }, {
   "numeroFactura" : 32,
@@ -56,7 +55,6 @@
   } ],
   "totalFactura" : 55.0,
   "impuestoFactura" : 10.45,
-  "descuentos" : 0.0,
   "descuento2" : 0.0
 }, {
   "numeroFactura" : 33,
@@ -86,7 +84,6 @@
   } ],
   "totalFactura" : 5000.0,
   "impuestoFactura" : 950.0,
-  "descuentos" : 500.0,
   "descuento2" : 0.0
 }, {
   "numeroFactura" : 34,
@@ -116,7 +113,6 @@
   } ],
   "totalFactura" : 4000.0,
   "impuestoFactura" : 760.0,
-  "descuentos" : 400.0,
   "descuento2" : 0.0
 }, {
   "numeroFactura" : 35,
@@ -146,7 +142,6 @@
   } ],
   "totalFactura" : 5000.0,
   "impuestoFactura" : 950.0,
-  "descuentos" : 500.0,
   "descuento2" : 0.0
 }, {
   "numeroFactura" : 36,
@@ -176,7 +171,6 @@
   } ],
   "totalFactura" : 50.0,
   "impuestoFactura" : 9.5,
-  "descuentos" : 0.0,
   "descuento2" : 0.0
 }, {
   "numeroFactura" : 11,
@@ -206,7 +200,6 @@
   } ],
   "totalFactura" : 5000.0,
   "impuestoFactura" : 950.0,
-  "descuentos" : 500.0,
   "descuento2" : 0.0
 }, {
   "numeroFactura" : 12,
@@ -236,6 +229,63 @@
   } ],
   "totalFactura" : 4500.0,
   "impuestoFactura" : 855.0,
-  "descuentos" : 450.0,
   "descuento2" : 0.0
+}, {
+  "numeroFactura" : 13,
+  "fecha" : "2024-02-13T20:43:26",
+  "cliente" : {
+    "id" : 2,
+    "nombre" : "Maria",
+    "apellido" : "Lopez",
+    "email" : "mlopez@gmail.com",
+    "direccion" : "1002",
+    "celular" : "31567890",
+    "documento" : "1002",
+    "fullName" : "Maria Lopez"
+  },
+  "items" : [ {
+    "cantidad" : 120,
+    "producto" : {
+      "codigo" : 5,
+      "nombre" : "Producto X",
+      "descripcion" : "Descripción del Producto 5",
+      "precioVenta" : 55.0,
+      "precioCompra" : 30.0,
+      "codigoNombre" : "5 Producto X $ 55,00",
+      "utilidad" : 25.0
+    },
+    "importe" : 6600.0
+  } ],
+  "totalFactura" : 6600.0,
+  "impuestoFactura" : 1254.0,
+  "descuento2" : 5.0
+}, {
+  "numeroFactura" : 14,
+  "fecha" : "2024-02-13T20:44:28",
+  "cliente" : {
+    "id" : 2,
+    "nombre" : "Maria",
+    "apellido" : "Lopez",
+    "email" : "mlopez@gmail.com",
+    "direccion" : "1002",
+    "celular" : "31567890",
+    "documento" : "1002",
+    "fullName" : "Maria Lopez"
+  },
+  "items" : [ {
+    "cantidad" : 120,
+    "producto" : {
+      "codigo" : 5,
+      "nombre" : "Producto X",
+      "descripcion" : "Descripción del Producto 5",
+      "precioVenta" : 55.0,
+      "precioCompra" : 30.0,
+      "codigoNombre" : "5 Producto X $ 55,00",
+      "utilidad" : 25.0
+    },
+    "importe" : 6600.0
+  } ],
+  "totalFactura" : 6600.0,
+  "impuestoFactura" : 1254.0,
+  "descuento2" : 5.0
 } ]

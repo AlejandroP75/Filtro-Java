@@ -15,7 +15,7 @@ VALUES
 ('Producto2', 'Descripción del Producto 2', 40.00, 25.00),
 ('Producto3', 'Descripción del Producto 3', 60.00, 35.00),
 ('Producto4', 'Descripción del Producto 4', 70.00, 45.00),
-('Producto5', 'Descripción del Producto 5', 55.00, 30.00),
+('Producto X', 'Descripción del Producto 5', 55.00, 30.00),
 -- ... Agrega más productos según sea necesario
 ('Producto18', 'Descripción del Producto 18', 65.00, 40.00),
 ('Producto19', 'Descripción del Producto 19', 80.00, 50.00),

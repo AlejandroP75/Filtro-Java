@@ -74,7 +74,7 @@ public class Factura {
     public double getDescuento2(){
         double des = 0;
         for (ItemFactura item : this.items) {
-            if(item.getProducto().getCodigo() == 6){
+            if(item.getProducto().getCodigo() == 5){
                 if (item.getCantidad() >= 5) {
                     des = 5;
                 }

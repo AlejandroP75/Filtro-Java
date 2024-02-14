@@ -36,11 +36,11 @@ public class ViewFactura extends ViewMain {
                     productoMasVendido();
                     break;
                 default:
-                    System.out.println("Opcion no valida");
+                    System.out.println("Salida");
                     break;
             }
 
-        } while (op >= 1 && op < 5);
+        } while (op >= 1 && op < 7);
 
     }
 
@@ -48,7 +48,9 @@ public class ViewFactura extends ViewMain {
         System.out.println("\nGENERACIÓN ARCHIVO DIAN\n");
         double sum_com = 0, sum_imp = 0;
         for (Factura factura : serviceFactura.listar()) {
-            System.out.println("Nombre: "+ factura.getCliente().getApellido() + "\tN° Documento: "+ factura.getCliente().getNombre() +"\tN° Telefono: "+ factura.getCliente().getDocumento() +"\tN° Factura: "+ factura.getNumeroFactura() + "\tFecha: " + factura.getFecha() + " \tTotal compra: $" + factura.getTotalFactura() + " \tImpuesto: $" + factura.getImpuestoFactura());
+            if (factura.getImpuestoFactura() != 0) {
+                System.out.println("Nombre: "+ factura.getCliente().getApellido() + "\tN° Documento: "+ factura.getCliente().getNombre() +"\tN° Telefono: "+ factura.getCliente().getDocumento() +"\tN° Factura: "+ factura.getNumeroFactura() + "\tFecha: " + factura.getFecha() + " \tTotal compra: $" + factura.getTotalFactura() + " \tImpuesto: $" + factura.getImpuestoFactura());
+            }
             sum_com = sum_com + factura.getTotalFactura();
             sum_imp = sum_imp + factura.getImpuestoFactura();
         }
@@ -66,7 +68,7 @@ public class ViewFactura extends ViewMain {
         for (Factura factura : serviceFactura.listar()) {
             sum_com = sum_com + factura.getTotalFactura();
             sum_imp = sum_imp + factura.getImpuestoFactura();
-            sum_des = sum_des + factura.getDescuentos();
+            sum_des = sum_des + factura.getDescuentos(factura.getTotalFactura());
         }
         System.out.println("Total compras:      $" + sum_com);
         System.out.println("Total impuestos:    $" + sum_imp);
@@ -77,11 +79,42 @@ public class ViewFactura extends ViewMain {
     }
 
     public static void clientesCompras(){
-        System.out.println("Listado descendente clientes por compras");
+        System.out.println("\nLISTADO DESCENDENTE CLIENTES POR COMPRAS\n");
+
+        for (Cliente cliente : serviceCliente.listar()){
+            System.out.println("Cliente: " + cliente.getFullName());
+            int cont_compras = 0;
+            for (Factura factura : serviceFactura.listar()){
+                if (cliente.getId() == factura.getCliente().getId()) {
+                    cont_compras++;
+                }
+            }
+            System.out.println("Numero de compras: "+ cont_compras + "\n");
+        }
+        System.out.print("\nIngrese cualquier tecla para continuar --> ");
+        leer.next();
+        System.out.println("\n");
     }
 
     public static void productoMasVendido(){
-        System.out.println("Listado descendente producto mas vendido");
+        System.out.println("\nLISTADO DESCENDENTE PRODUCTO MAS VENDIDO\n");
+
+        for (Producto producto : serviceProducto.listar()){
+            System.out.println("Producto: " + producto.getNombre());
+            int cont_compras = 0;
+            for (Factura factura : serviceFactura.listar()){
+                for (ItemFactura itemFactura : factura.getItems()) {
+                    if (producto.getCodigo() == itemFactura.getProducto().getCodigo()) {
+                        cont_compras = itemFactura.getCantidad();
+                    }
+                }
+
+            }
+            System.out.println("Numero de compras: "+ cont_compras + "\n");
+        }
+        System.out.print("\nIngrese cualquier tecla para continuar --> ");
+        leer.next();
+        System.out.println("\n");
     }
 
     public static int mostrarMenu() {
@@ -95,7 +128,6 @@ public class ViewFactura extends ViewMain {
         System.out.println("7. Salir ");
         return leer.nextInt();
     }
-
 
     public static void listarFactura() {
         System.out.println("Lista de Facturas");
