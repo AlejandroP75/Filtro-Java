@@ -5,13 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 import com.campusland.utils.Formato;
 import com.fasterxml.jackson.annotation.JsonFormat;
-
+import com.campusland.respository.impl.implfactura.RepositoryFacturaJsonImpl;
+import com.campusland.respository.impl.implfactura.RepositoryFacturaMysqlImpl;
+import com.campusland.respository.models.Factura;
+import com.campusland.services.ServiceFactura;
+import com.campusland.services.impl.ServiceFacturaImpl;
 
 import lombok.Data;
 
 @Data
 public class Factura {
 
+    public static final ServiceFactura serviceFactura = new ServiceFacturaImpl(new RepositoryFacturaMysqlImpl(),new RepositoryFacturaJsonImpl());
     private int numeroFactura;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")    
     private LocalDateTime fecha;
@@ -79,9 +84,18 @@ public class Factura {
         return des;
     }
 
-    public double getDescuento3(){
+    public double getDescuento3(Cliente c, double total_factura){
         double des = 0;
+        int cont_facturas = 0;
+        for (Factura factura : serviceFactura.listar()) {
+            if (factura.getCliente().getId() == c.getId()) {
+                cont_facturas++;
+            }
+        }
 
+        if (cont_facturas > 10) {
+            des = total_factura * 0.15;
+        }
 
         return des;
     }
@@ -108,10 +122,14 @@ public class Factura {
         return des;
     }
 
-    public double getDescuentos(){
+    public double getDescuentos(double total_factura){
         double sum_des = 0;
 
-        sum_des = this.getDescuento1(this.getTotalFactura()) + getDescuento2() + getDescuento3() + getDescuento4(this.getFecha()) + getDescuento5(this.getFecha(), this.getTotalFactura());
+        sum_des = this.getDescuento1(this.getTotalFactura()) + getDescuento2() + getDescuento3(this.cliente, this.getTotalFactura()) + getDescuento4(this.getFecha()) + getDescuento5(this.getFecha(), this.getTotalFactura());
+
+        if (sum_des > total_factura) {
+            sum_des = total_factura;
+        }
 
         return sum_des;
     }
@@ -132,10 +150,10 @@ public class Factura {
         System.out.println("Descuento monto minimo             -" + Formato.formatoMonedaPesos(this.getDescuento1(getTotalFactura())));
         System.out.println("Descuento al menos 5\n" + 
                            "unidades del producto x            -" + Formato.formatoMonedaPesos(this.getDescuento2()));
-        System.out.println("Descuento cliente gold             -" + Formato.formatoMonedaPesos(this.getDescuento3()));
+        System.out.println("Descuento cliente gold             -" + Formato.formatoMonedaPesos(this.getDescuento3(this.cliente, this.getTotalFactura())));
         System.out.println("Descuento viernes                  -" + Formato.formatoMonedaPesos(this.getDescuento4(this.getFecha())));
         System.out.println("Descuento temporada navideña       -" + Formato.formatoMonedaPesos(this.getDescuento5(this.getFecha(), this.getTotalFactura())));
-        System.out.println("Total a pagar                       " + Formato.formatoMonedaPesos(this.getTotalFactura() - this.getDescuentos() + this.getImpuestoFactura()));
+        System.out.println("Total a pagar                       " + Formato.formatoMonedaPesos(this.getTotalFactura() - this.getDescuentos(this.getTotalFactura()) + this.getImpuestoFactura()));
         System.out.println();
     }
 

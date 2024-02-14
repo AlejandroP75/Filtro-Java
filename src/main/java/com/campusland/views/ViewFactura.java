@@ -45,13 +45,35 @@ public class ViewFactura extends ViewMain {
     }
 
     public static void generarDIAN(){
-        System.out.println("Generación archivo DIAN");
-
-
+        System.out.println("\nGENERACIÓN ARCHIVO DIAN\n");
+        double sum_com = 0, sum_imp = 0;
+        for (Factura factura : serviceFactura.listar()) {
+            System.out.println("Nombre: "+ factura.getCliente().getApellido() + "\tN° Documento: "+ factura.getCliente().getNombre() +"\tN° Telefono: "+ factura.getCliente().getDocumento() +"\tN° Factura: "+ factura.getNumeroFactura() + "\tFecha: " + factura.getFecha() + " \tTotal compra: $" + factura.getTotalFactura() + " \tImpuesto: $" + factura.getImpuestoFactura());
+            sum_com = sum_com + factura.getTotalFactura();
+            sum_imp = sum_imp + factura.getImpuestoFactura();
+        }
+        System.out.print("\n");
+        System.out.println("Total compras: $" + sum_com);
+        System.out.println("Total impuestos: $" + sum_imp);
+        System.out.print("\nIngrese cualquier tecla para continuar --> ");
+        leer.next();
+        System.out.println("\n");
     }
 
     public static void informeTotal(){
-        System.out.println("Generacion infrome total");
+        System.out.println("\nGENERACIÓN INFORME TOTAL\n");
+        double sum_com = 0, sum_imp = 0, sum_des = 0;
+        for (Factura factura : serviceFactura.listar()) {
+            sum_com = sum_com + factura.getTotalFactura();
+            sum_imp = sum_imp + factura.getImpuestoFactura();
+            sum_des = sum_des + factura.getDescuentos();
+        }
+        System.out.println("Total compras:      $" + sum_com);
+        System.out.println("Total impuestos:    $" + sum_imp);
+        System.out.println("Total descuentos:   $" + sum_des);
+        System.out.print("\nIngrese cualquier tecla para continuar --> ");
+        leer.next();
+        System.out.println("\n");
     }
 
     public static void clientesCompras(){
@@ -69,7 +91,8 @@ public class ViewFactura extends ViewMain {
         System.out.println("3. Generar archivo DIAN por año");
         System.out.println("4. Informe total de ventas, descuento e impuestos");
         System.out.println("5. Listado descendiente clientes por compras");
-        System.out.println("6. Salir ");
+        System.out.println("6. Listado descendiente producto mas vendido");
+        System.out.println("7. Salir ");
         return leer.nextInt();
     }
 
